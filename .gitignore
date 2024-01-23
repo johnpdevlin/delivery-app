@@ -1,24 +1,64 @@
-# Logs
-logs
-*.log
+# Dependency directories
+node_modules/
+
+# Vite build output
+dist/
+dist-ssr
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Operating System Files
+.DS_Store
+Thumbs.db
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Temporary files
+*.tmp
+*.temp
+
+# Typescript declaration files
+typings/
+
+# Cache files
+.eslintcache
+.cache
+.fusebox/
+.yarn-integrity
+.pnpm-lock.yaml
+
+# Build outputs for other systems
+.next/
+.out/
+.nuxt
+.public/
+.vuepress/dist
+.serverless/
+.dynamodb/
+
+# Misc
+*.tgz
+.tern-port
+.vscode-test
+*.log
+*.out
