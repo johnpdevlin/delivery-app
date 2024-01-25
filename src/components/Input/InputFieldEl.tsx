@@ -1,8 +1,6 @@
 /** @format */
-
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
 import { Dispatch, SetStateAction } from 'react';
+import { TextField, InputAdornment } from '@mui/material';
 
 type InputElementProps = {
 	dataTestId: string;
@@ -11,36 +9,30 @@ type InputElementProps = {
 	adornment?: string;
 	adornmentPosition?: 'start' | 'end';
 	type?: 'number' | 'text';
-	ariaLabel?: string;
+	label: string;
 	minNumber?: number;
 	allowDecimals?: boolean; // New optional prop for decimal handling
 };
 
-export default function InputEl({
+function InputEl({
 	dataTestId,
+	label,
 	value,
 	setValue,
 	adornmentPosition = 'end',
 	adornment,
-	ariaLabel,
 	type = 'text',
 	minNumber = 0,
 	allowDecimals = false,
 }: InputElementProps) {
-	const adornmentEl = adornment ? (
-		<InputAdornment position={adornmentPosition}>{adornment}</InputAdornment>
-	) : null;
-
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (type === 'text') {
-			setValue(e.target.value);
-		} else if (type === 'number') {
+		if (type === 'text') setValue(e.target.value);
+		else if (type === 'number') {
 			if (allowDecimals) {
 				// For decimal values, parse as float
 				const parsedValue = parseFloat(e.target.value);
-				if (!isNaN(parsedValue)) {
+				if (!isNaN(parsedValue))
 					setValue(parsedValue >= minNumber ? parsedValue : minNumber);
-				}
 			} else {
 				// For integer values, parse as int
 				const parsedValue = parseInt(e.target.value, 10);
@@ -54,23 +46,34 @@ export default function InputEl({
 	};
 
 	const handleBlur = () => {
-		if (allowDecimals && typeof value === 'number') {
+		if (allowDecimals && typeof value === 'number')
 			// Round to two decimal places on blur
 			setValue(Math.round((value + Number.EPSILON) * 100) / 100);
-		}
 	};
 
 	return (
-		<OutlinedInput
+		<TextField
+			label={label}
+			variant='filled'
 			fullWidth
+			aria-label={`Input ${type} for ${label}`}
 			type={type}
 			data-test-id={dataTestId}
-			startAdornment={adornmentPosition === 'start' ? adornmentEl : undefined}
-			endAdornment={adornmentPosition === 'end' ? adornmentEl : undefined}
-			aria-label={ariaLabel}
+			InputProps={{
+				startAdornment:
+					adornmentPosition === 'start' ? (
+						<InputAdornment position='start'>{adornment}</InputAdornment>
+					) : undefined,
+				endAdornment:
+					adornmentPosition === 'end' ? (
+						<InputAdornment position='end'>{adornment}</InputAdornment>
+					) : undefined,
+			}}
 			value={value}
 			onChange={handleInputChange}
 			onBlur={handleBlur}
 		/>
 	);
 }
+
+export default InputEl;
