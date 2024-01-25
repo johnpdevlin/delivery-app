@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 
 type DateTimeSelectProps = {
 	value: Date;
+	label: string;
 	setValue: Dispatch<SetStateAction<Date>>;
 	onlyAllowFuture?: boolean;
 	dataTestId?: string;
@@ -15,25 +16,45 @@ type DateTimeSelectProps = {
 
 const DateTimeSelect = ({
 	value,
+	label,
 	setValue,
 	onlyAllowFuture = false,
 	dataTestId,
 }: DateTimeSelectProps) => {
 	return (
-		<div>
-			<LocalizationProvider dateAdapter={AdapterDayjs}>
-				<DateTimePicker
-					disablePast={onlyAllowFuture}
-					value={dayjs(value)}
-					onChange={(newValue) => {
-						if (newValue && newValue.isValid()) {
-							setValue(newValue.toDate());
-						}
-					}}
-					data-test-id={dataTestId}
-				/>
-			</LocalizationProvider>
-		</div>
+		<LocalizationProvider dateAdapter={AdapterDayjs}>
+			<DateTimePicker
+				format='DD/MM/YYYY'
+				label={label}
+				disablePast={onlyAllowFuture}
+				openTo='hours'
+				value={dayjs(value)}
+				aria-label={`Input Date and Time for ${label}`}
+				onChange={(newValue) => {
+					if (newValue && newValue.isValid()) {
+						setValue(newValue.toDate());
+					}
+				}}
+				data-test-id={dataTestId}
+				sx={{
+					'& label.Mui-focused': {
+						color: 'primary.main',
+					},
+					'& .MuiInputLabel-root': {
+						color: 'ButtonShadow',
+					},
+
+					'& .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline':
+						{
+							borderColor: 'primary.main',
+
+							'&:hover': {
+								backgroundColor: 'grey',
+							},
+						},
+				}}
+			/>
+		</LocalizationProvider>
 	);
 };
 
