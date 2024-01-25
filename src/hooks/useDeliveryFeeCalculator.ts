@@ -9,15 +9,19 @@ const useDeliveryFeeCalculator = () => {
 	const [deliveryDistance, setDeliveryDistance] = useState<number>(0);
 	const [numberOfItems, setNumberOfItems] = useState<number>(0);
 	const [orderTime, setOrderTime] = useState<Date>(new Date());
-
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 	// Function that calls the utility function
-	const getDeliveryFee = () =>
-		calculateDeliveryFee({
+	const getDeliveryFee = () => {
+		setIsLoading(true);
+		const fee = calculateDeliveryFee({
 			cartValue,
 			deliveryDistance,
 			numberOfItems,
 			orderTime,
 		});
+		setIsLoading(false);
+		return fee;
+	};
 
 	return {
 		cartValue,
@@ -29,6 +33,7 @@ const useDeliveryFeeCalculator = () => {
 		orderTime,
 		setOrderTime,
 		getDeliveryFee,
+		isLoading,
 	};
 };
 
