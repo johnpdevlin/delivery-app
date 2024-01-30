@@ -65,10 +65,14 @@ export const calculateExtraItemsSurcharge = (numberOfItems: number): number => {
 	return surcharge;
 };
 
-export const isRushHour = (orderTime: Date): boolean =>
-	orderTime.getDay() === RUSH_HOUR_DAY &&
-	orderTime.getHours() >= RUSH_HOUR_START_HOUR &&
-	orderTime.getHours() < RUSH_HOUR_END_HOUR;
+export const isRushHour = (orderTime: Date, timeZone = 'UTC'): boolean => {
+	const localTime = new Date(orderTime.toLocaleString('en-US', { timeZone }));
+	return (
+		localTime.getDay() === RUSH_HOUR_DAY &&
+		localTime.getHours() >= RUSH_HOUR_START_HOUR &&
+		localTime.getHours() < RUSH_HOUR_END_HOUR
+	);
+};
 
 export const roundToTwoDecimalPlaces = (amount: number): number =>
 	Math.round(amount * 100) / 100;

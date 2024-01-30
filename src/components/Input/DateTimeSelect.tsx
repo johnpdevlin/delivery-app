@@ -29,10 +29,20 @@ const DateTimeSelect = ({
 				openTo='hours'
 				disablePast={onlyAllowFuture}
 				value={dayjs(value)}
-				aria-label={`Input Date and Time for ${label}`}
+				aria-label={`Input Date and Time`}
 				onChange={(newValue) => {
 					if (newValue && newValue.isValid()) {
-						setValue(newValue.toDate());
+						const localDate = newValue.toDate();
+						const utcDate = new Date(
+							Date.UTC(
+								localDate.getFullYear(),
+								localDate.getMonth(),
+								localDate.getDate(),
+								localDate.getHours(),
+								localDate.getMinutes()
+							)
+						);
+						setValue(utcDate);
 					}
 				}}
 				data-test-id={dataTestId}
@@ -44,6 +54,7 @@ const DateTimeSelect = ({
 
 export default DateTimeSelect;
 
+// Overrid style properties to align with InputFieldEl styling
 const styleProps = {
 	color: 'rgba(0, 0, 0, 0.60)',
 	backgroundColor: 'rgba(0, 0, 0, 0.06)',
