@@ -64,7 +64,7 @@ describe('Delivery Fee Calculator', () => {
 			expect(isRushHour(startRushHour)).toBe(true);
 		});
 
-		it('should return true at the end of rush hour', () => {
+		it('should return false at the end of rush hour', () => {
 			const endRushHour = new Date('2021-10-22T19:00:00Z');
 			expect(isRushHour(endRushHour)).toBe(false);
 		});
