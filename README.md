@@ -1,30 +1,49 @@
-# React + TypeScript + Vite
+<!-- @format -->
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Delivery Project
 
-Currently, two official plugins are available:
+## Introduction
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The Delivery Project is a web application designed to calculate delivery fees based on parameters like cart value, delivery distance, number of items, and order time. Built with React, TypeScript and Material-UI, it provides a user-friendly interface for calculating delivery costs.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Form for inputting cart value, delivery distance, number of items, and order time.
+- Real-time calculation of delivery fees.
+- Responsive design for compatibility with various devices.
+- Accessible UI and semantics for screen readers etc.
+- Utilizes Material-UI for a modern interface.
 
-- Configure the top-level `parserOptions` property like this:
+## Prerequisites
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Before beginning, ensure you have the following:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Node.js and npm (Node Package Manager). [Download Node.js](https://nodejs.org/en/download/)
+
+## Installation
+
+### Using a ZIP File
+
+If you have received this project as a ZIP file, follow these steps:
+
+1. Unzip the `delivery-project.zip` file to your desired location.
+2. Open a terminal and navigate to the unzipped project directory:
+   ```bash
+   cd path/to/delivery-project
+   ```
+3. npm install
+
+## Usage
+
+After installing the Delivery Project, use the following commands to run and interact with the application:
+
+- **Start the Development Server:**
+  npm run dev
+- **Build the Project for Production:**
+  npm run build
+- **Run Tests:**
+  npm run test
+- **Preview the Production Build:**
+  npm run preview
+
+These commands are integral for the development and testing of the Delivery Project. Ensure to run these commands in the root directory of the project.
