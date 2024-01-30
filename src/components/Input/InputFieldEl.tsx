@@ -14,7 +14,7 @@ type InputElementProps = {
 	allowDecimals?: boolean; // New optional prop for decimal handling
 };
 
-function InputEl({
+function InputFieldEl({
 	dataTestId,
 	label,
 	value,
@@ -76,4 +76,4 @@ function InputEl({
 	);
 }
 
-export default InputEl;
+export default InputFieldEl;
